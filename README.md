@@ -18,4 +18,13 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Ajout de la dépendance Caméra :
 
-```flutter pub add camera````
+```flutter pub add camera```
+
+## Pour lancer sur l'emulateur :
+
+Ouvrez premièrement votre Android Studio et lancez un émulateur, ensuite lancer la ligne de commande suivante :
+
+```flutter run```
+
+## Paquet Camera 
+Sur ce paquet de camera, nous pouvons voir une fausse simulation d'une scène sur laquelle nous pouvons choisir de prendre une photo, lorsque vous cliquer sur le bouton vous serez redirigé vers l'écran de galerie.

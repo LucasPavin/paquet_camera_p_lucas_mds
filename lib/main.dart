@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:widget__p_lucas/image.dart';
 
 late List<CameraDescription> cameras;
 
@@ -64,6 +65,41 @@ class _CameraAppState extends State<CameraApp> {
           height: double.infinity,
           child: CameraPreview(_controller),
         ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Container(
+                margin: EdgeInsets.all(10.0),
+                child: MaterialButton(
+                  onPressed: () async {
+                    if (!_controller.value.isInitialized) {
+                      return null;
+                    }
+                    if (_controller.value.isTakingPicture) {
+                      return null;
+                    }
+                    try {
+                      await _controller.setFlashMode(FlashMode.auto);
+                      XFile picture = await _controller.takePicture();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ImageScreen(picture)));
+                    } on CameraException catch (e) {
+                      debugPrint(
+                          "Une erreur s'est produite au moment de prendre la photo : $e");
+                      return null;
+                    }
+                  },
+                  child: Text(''),
+                  color: Colors.blue,
+                ),
+              ),
+            )
+          ],
+        )
       ]),
     );
   }
